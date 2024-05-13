@@ -1,9 +1,16 @@
 import { Col } from "react-bootstrap";
 import styled from "styled-components";
 
+interface IButtonProps {
+  $variant?: "red" | undefined;
+}
+
 export const ColDireita = styled(Col)`
   background-color: #950101;
-  min-height: 100vh;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const ColEsquerda = styled(Col)`
@@ -47,12 +54,18 @@ export const FormSign = styled.form`
   display: flex;
   flex-direction: column;
 
-  input[type="text"] {
+  p {
+    font-size: 15px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
     background-color: #bdbdbd;
     border: none;
     margin-bottom: 20px;
     border-radius: 15px;
     padding: 5px 10px;
+    outline: none;
 
     &::placeholder {
       color: #fff;
@@ -60,12 +73,30 @@ export const FormSign = styled.form`
   }
 `;
 
-export const ButtonStyled = styled.button`
+export const ButtonCliqueAqui = styled.button`
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-left: 5px;
+  text-decoration: underline;
+  color: blue;
+  background-color: transparent;
+`;
+
+export const ButtonStyled = styled.button<IButtonProps>`
   width: 240px;
   margin: 0 auto;
   border: none;
   border-radius: 20px;
   padding: 10px;
-  background-color: #950101;
-  color: #fff;
+  background-color: ${({ $variant }) =>
+    $variant === "red" ? "#950101" : "#fff"};
+  color: ${({ $variant }) => ($variant === "red" ? "#fff" : "#950101")};
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: ${({ $variant }) =>
+      $variant === "red" ? "#d62c2c" : "#efdfdf"};
+    color: ${({ $variant }) => ($variant === "red" ? "#efdfdf" : "#d62c2c")};
+  }
 `;

@@ -11,6 +11,7 @@ import LogoUepb from "../../assets/icons/uepb_logo.png";
 import PerfilIcon from "../../assets/icons/icon_perfil.png";
 import { ColInterna, RowInterna } from "../../StyledComponentsGerais";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const SignUp = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -62,7 +63,11 @@ const SignUp = () => {
                   <input type="text" placeholder="E-mail Institucional" />
                   <input type="text" placeholder="Senha" />
                   <input type="text" placeholder="Cofirmação de Senha" />
-                  <ButtonStyled style={{ marginTop: "20px" }} type="submit">
+                  <ButtonStyled
+                    $variant="red"
+                    style={{ marginTop: "20px" }}
+                    type="submit"
+                  >
                     CADASTRAR-SE
                   </ButtonStyled>
                 </FormSign>
@@ -71,7 +76,24 @@ const SignUp = () => {
           </ColInterna>
         </RowInterna>
       </ColEsquerda>
-      <ColDireita md={5} className="d-none d-md-block"></ColDireita>
+      <ColDireita md={5} className="d-none d-md-flex">
+        <DivTituloAndSubtitulo>
+          <h1 style={{ color: "#fff" }}>Já possui uma conta?</h1>
+          <p
+            style={{
+              maxWidth: "300px",
+              margin: "0 auto",
+            }}
+          >
+            Faça login pra se manter conectado com a gente!
+          </p>
+        </DivTituloAndSubtitulo>
+        <div style={{ textAlign: "center" }}>
+          <NavLink to={"/sign-in"}>
+            <ButtonStyled>LOGAR</ButtonStyled>
+          </NavLink>
+        </div>
+      </ColDireita>
     </Row>
   );
 };
