@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.project.social.entities.User;
+import com.project.social.entities.dto.UserDTO;
 import com.project.social.services.UserService;
 
 @RestController
@@ -57,8 +58,13 @@ public class UserController {
 	}
     
     @PutMapping(value = "/{id}")
-	public User updateBook(@PathVariable Integer id,@RequestBody User user) {
+	public User updateUser(@PathVariable Integer id,@RequestBody User user) {
 		return userService.updateUser(id, user);
 	}
+    
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody UserDTO data){
+    	return userService.loginUser(data);
+    }
 
 }

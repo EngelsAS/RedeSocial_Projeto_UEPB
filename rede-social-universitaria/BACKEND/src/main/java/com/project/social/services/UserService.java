@@ -3,12 +3,12 @@ package com.project.social.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.project.social.entities.User;
+import com.project.social.entities.dto.UserDTO;
 import com.project.social.repositories.UserRepository;
 import com.project.social.services.exceptions.DeleteException;
 import com.project.social.services.exceptions.ResourceNotFoundException;
@@ -69,6 +69,18 @@ public class UserService {
 		entity.setPassword(obj.getPassword());
 		entity.setPicturePerfilUrl(obj.getPicturePerfilUrl());
 
+	}
+	
+	@Transactional
+	public ResponseEntity<?> loginUser(UserDTO data) {
+		System.out.println(data.academicEmail());
+		User user = userRepository.findByAcademicEmail(data.academicEmail());
+		System.out.println(user);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+        }
 	}
 
 }
