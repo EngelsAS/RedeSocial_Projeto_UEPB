@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NavbarContainer = styled.div`
-  border: 1px solid orange;
+  border-left: 1px solid #e6ebec;
   float: right;
   width: 380px;
   height: 1000px;

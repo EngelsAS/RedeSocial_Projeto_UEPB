@@ -6,7 +6,7 @@ export const ContainerPrincipal = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  border: 1px solid #c62727;
+  border-bottom: 1px solid #e6ebec;
   flex-basis: 645px;
   flex-shrink: 0;
 
