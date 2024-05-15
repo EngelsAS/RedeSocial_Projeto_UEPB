@@ -12,11 +12,30 @@ import PerfilIcon from "../../assets/icons/icon_perfil.png";
 import { ColInterna, RowInterna } from "../../StyledComponentsGerais";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { axiosLocalApi } from "../../utils/axiosInstance";
+import { useState } from "react";
+
 
 const SignUp = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [signUpValues, setSignUpValues] = useState({
+    name: "",
+    academicEmail: "",
+    username: "",
+    password: "",
+    confirm_password: "",
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("teste");
+
+    try{
+      const response = await axiosLocalApi.post("/users", signUpValues);
+      console.log("Usuario cadastradooo",response.data);
+    }
+    catch(error){
+      console.error("Deu erro meu bom",error);
+    }
   };
 
   return (
@@ -58,11 +77,55 @@ const SignUp = () => {
               </ColInterna>
               <ColInterna>
                 <FormSign onSubmit={handleSubmit}>
-                  <input type="text" placeholder="Nome" />
-                  <input type="text" placeholder="Nome de Usuário" />
-                  <input type="text" placeholder="E-mail Institucional" />
-                  <input type="text" placeholder="Senha" />
-                  <input type="text" placeholder="Cofirmação de Senha" />
+                  <input 
+                    type="text" 
+                    placeholder="Nome"
+                    onChange={(e) =>
+                      setSignUpValues((prev) => ({
+                        ...prev,
+                        name: e.target.value,
+                      }))
+                    }
+                    />
+                  <input 
+                    type="text" 
+                    placeholder="Nome de Usuário"
+                    onChange={(e) =>
+                      setSignUpValues((prev) => ({
+                        ...prev,
+                        username: e.target.value,
+                      }))
+                    } />
+                  <input 
+                    type="text" 
+                    placeholder="E-mail Institucional" 
+                    onChange={(e) =>
+                      setSignUpValues((prev) => ({
+                        ...prev,
+                        academicEmail: e.target.value,
+                      }))
+                    }
+                    />
+                  <input 
+                    type="password" 
+                    placeholder="Senha" 
+                    onChange={(e) =>
+                      setSignUpValues((prev) => ({
+                        ...prev,
+                        password: e.target.value,
+                      }))
+                    }
+                    />
+                  <input 
+                    type="password" 
+                    placeholder="Cofirmação de Senha" 
+                    onChange={(e) =>
+                      setSignUpValues((prev) => ({
+                        ...prev,
+                        confirm_password: e.target.value,
+                      }))
+                    }
+                    />
                   <ButtonStyled
                     $variant="red"
                     style={{ marginTop: "20px" }}

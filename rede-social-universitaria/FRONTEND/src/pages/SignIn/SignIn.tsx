@@ -13,12 +13,25 @@ import { NavLink } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
 import React, { useState } from "react";
 import ForgotPasswordModalContent from "../../components/ConteudosModais/ForgotPasswordModalContent/ForgotPasswordModalContent";
+import { axiosLocalApi } from "../../utils/axiosInstance";
 
 const SignIn = () => {
   const [opened, setModalOpened] = useState<boolean>(false);
+  const [signUpValues, setSignUpValues] = useState({
+    academicEmail: "",
+    password: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    try{
+      const response = await axiosLocalApi.post("/users/login", signUpValues);
+      console.log("Tá logado",response.data);
+    }
+    catch(error){
+      console.error("Deu erro meu bom",error);
+    }
   };
 
   return (
@@ -61,11 +74,23 @@ const SignIn = () => {
                       style={{ width: "400px" }}
                       type="text"
                       placeholder="E-mail institucional"
+                      onChange={(e) =>
+                        setSignUpValues((prev) => ({
+                          ...prev,
+                          academicEmail: e.target.value,
+                        }))
+                      }
                     />
                     <input
                       style={{ width: "400px" }}
                       type="password"
                       placeholder="Senha"
+                      onChange={(e) =>
+                        setSignUpValues((prev) => ({
+                          ...prev,
+                          password: e.target.value,
+                        }))
+                      }
                     />
                     <p>
                       esqueceu a senha num foi major? apois
