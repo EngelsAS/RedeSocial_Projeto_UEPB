@@ -73,14 +73,16 @@ public class UserService {
 	
 	@Transactional
 	public ResponseEntity<?> loginUser(UserDTO data) {
-		System.out.println(data.academicEmail());
 		User user = userRepository.findByAcademicEmail(data.academicEmail());
 		System.out.println(user);
+		
         if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+        	if(user.getPassword().equals(data.password())) {
+        		System.out.println("entrou aqui");
+        		return ResponseEntity.ok(user);
+        	}
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
 	}
 
 }
