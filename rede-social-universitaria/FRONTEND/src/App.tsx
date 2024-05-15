@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import { Container } from "react-bootstrap";
 import RootEstructure from "./components/RootEstructure/RootEstructure";
 import ForYou from "./pages/ForYou/ForYou";
+import Seguindo from "./pages/Seguindo/Seguindo";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,10 @@ function App() {
         {
           path: "for-you",
           element: <ForYou />,
+        },
+        {
+          path: "seguindo",
+          element: <Seguindo />,
         },
       ],
     },

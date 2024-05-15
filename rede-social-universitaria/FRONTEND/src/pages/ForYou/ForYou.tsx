@@ -1,11 +1,5 @@
-import { ContainerPrincipal, ContentContainer } from "./Styles";
-
 const ForYou = () => {
-  return (
-    <ContainerPrincipal>
-      <ContentContainer>Container De Conteudo</ContentContainer>
-    </ContainerPrincipal>
-  );
+  return <p>Container De Conteudo</p>;
 };
 
 export default ForYou;

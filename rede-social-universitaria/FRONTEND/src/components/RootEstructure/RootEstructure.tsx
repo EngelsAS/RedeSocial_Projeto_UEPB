@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import NavbarDireitaHome from "../Navbars/NavbarDireita/NavbarDireitaHome";
 import NavbarEsquerdaHome from "../Navbars/NavbarEsquerda/NavbarEsquerdaHome";
 import { ContainerContent, ContainerEstructure } from "./Styles";
+import NavbarCentralConteudo from "../Navbars/NavbarCentralConteudo/NavbarCentralConteudo";
+import { ContainerCentral, ContainerPrincipal } from "./Styles";
 
 const RootEstructure = () => {
   return (
@@ -10,7 +12,12 @@ const RootEstructure = () => {
         <ContainerContent>
           <NavbarEsquerdaHome />
           <NavbarDireitaHome />
-          <Outlet />
+          <ContainerPrincipal>
+            <ContainerCentral>
+              <NavbarCentralConteudo />
+              <Outlet />
+            </ContainerCentral>
+          </ContainerPrincipal>
         </ContainerContent>
       </ContainerEstructure>
     </>
