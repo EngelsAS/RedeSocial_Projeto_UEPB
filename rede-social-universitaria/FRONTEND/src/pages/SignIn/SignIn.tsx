@@ -9,7 +9,7 @@ import {
 } from "../SignUp/Styles";
 import { ColInterna, RowInterna } from "../../StyledComponentsGerais";
 import LogoUepb from "../../assets/icons/uepb_logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
 import React, { useState } from "react";
 import ForgotPasswordModalContent from "../../components/ConteudosModais/ForgotPasswordModalContent/ForgotPasswordModalContent";
@@ -21,16 +21,17 @@ const SignIn = () => {
     academicEmail: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try{
+    try {
       const response = await axiosLocalApi.post("/users/login", signUpValues);
-      console.log("Tá logado",response.data);
-    }
-    catch(error){
-      console.error("Deu erro meu bom",error);
+      console.log("Tá logado", response.data);
+      navigate("/home/for-you");
+    } catch (error) {
+      console.error("Deu erro meu bom", error);
     }
   };
 

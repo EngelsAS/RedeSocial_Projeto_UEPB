@@ -19,6 +19,7 @@ export const NavContent = styled.div`
     text-decoration: none;
     color: #000;
     font-size: 12px;
+    transition: all 0.2s;
   }
 
   & > a:hover {
